@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daniel McKnight | Bioinformatician, plant pathogen genomics</title>
+<meta name="description" content="Daniel McKnight is a bioinformatician at NSW DPIRD. His PhD described four new Xanthomonas species and the first Australian record of Xanthomonas cannabis.">
+<meta property="og:title" content="Daniel McKnight | Bioinformatician">
+<meta property="og:description" content="Genomics, phylogenetics and diagnostics for Australian plant biosecurity.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23E5A300'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F6F4; --surface:#FFFFFF; --ink:#12302B; --muted:#4A6660; --line:#D5E0DB;
+  --gold:#E5A300; --gold-ink:#8A5F00; --teal:#1F7A6D; --on-gold:#12302B;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0E1F1C; --surface:#142A26; --ink:#E8F0EC; --muted:#9DB5AE; --line:#254039; --gold:#F2B705; --gold-ink:#F2B705; --teal:#5CC4B2; --on-gold:#0E1F1C;}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:1rem}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.7}
+a{color:var(--teal);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:var(--on-gold);padding:.5rem 1rem;z-index:10}
+.skip:focus{left:0}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem}
+i{font-style:italic}
+
+/* header */
+header.top{padding:1.25rem 0}
+header.top .wrap{display:flex;flex-wrap:wrap;gap:.75rem 2rem;justify-content:space-between;align-items:baseline}
+.mark{font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none}
+nav a{font-family:var(--display);font-weight:500;font-size:.98rem;color:var(--muted);text-decoration:none;margin-left:1.5rem}
+nav a:first-child{margin-left:0}
+nav a:hover{color:var(--ink);text-decoration:underline}
+
+/* hero */
+.hero{padding:3rem 0 4.5rem}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:3rem;align-items:center}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2.8rem,7.5vw,5.2rem);line-height:.98;letter-spacing:-.03em;margin:0 0 1.25rem}
+.role{font-family:var(--display);font-weight:500;font-size:1.3rem;line-height:1.35;margin:0 0 1.25rem;max-width:26ch}
+.lede{max-width:46ch;margin:0 0 1.75rem;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{font-family:var(--display);font-weight:700;font-size:1rem;padding:.7rem 1.25rem;border-radius:6px;text-decoration:none;border:2px solid var(--ink);color:var(--ink);display:inline-block}
+.btn.primary{background:var(--gold);border-color:var(--gold);color:var(--on-gold)}
+.btn:hover{text-decoration:underline}
+
+/* tree */
+.tree-fig{margin:0}
+.tree-fig svg{width:100%;height:auto;display:block}
+.tree path{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.5s ease-out forwards}
+.tip{opacity:0;animation:fade .6s ease-out 1.6s forwards}
+.tip text{font-family:var(--display);font-weight:500;font-size:15px;fill:var(--ink)}
+.tip.other text{fill:var(--muted)}
+.tip a{cursor:pointer}
+.tip a:hover text{text-decoration:underline}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fade{to{opacity:1}}
+figcaption{margin-top:.75rem;font-size:.92rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:.35rem 1.25rem}
+.key{display:inline-flex;align-items:center;gap:.45rem}
+.dot{width:.8rem;height:.8rem;border-radius:50%;display:inline-block;flex:none}
+.dot.gold{background:var(--gold)}
+.dot.teal{background:var(--teal)}
+
+/* sections */
+section.block{border-top:1px solid var(--line);padding:3.5rem 0}
+section.block .wrap{display:grid;grid-template-columns:200px minmax(0,1fr);gap:1rem 3rem}
+h2{font-family:var(--display);font-weight:700;font-size:1.5rem;line-height:1.2;margin:0;letter-spacing:-.01em}
+h3{font-family:var(--display);font-weight:700;font-size:1.1rem;margin:2rem 0 .75rem}
+h3:first-child{margin-top:0}
+.content{max-width:68ch}
+.content p{margin:0 0 1rem}
+
+/* species rows */
+.species{list-style:none;margin:1.5rem 0 0;padding:0}
+.species li{display:grid;grid-template-columns:1.2rem 1fr;gap:.2rem .6rem;padding:.9rem 0;border-top:1px solid var(--line)}
+.species li:last-child{border-bottom:1px solid var(--line)}
+.species .dot{margin-top:.5rem}
+.species strong{font-family:var(--display);font-weight:700;font-size:1.08rem}
+.species span.sub{display:block;color:var(--muted);font-size:.98rem}
+
+/* publications */
+.pubs{list-style:none;margin:0;padding:0}
+.pubs li{padding:1.25rem 0;border-top:1px solid var(--line)}
+.pubs li:first-child{border-top:0;padding-top:0}
+.pubs .title{font-family:var(--display);font-weight:700;font-size:1.12rem;line-height:1.35;margin:0 0 .3rem}
+.pubs .meta{margin:0;color:var(--muted);font-size:.98rem}
+.pubs .blurb{margin:.5rem 0 0;font-size:1rem}
+.pubs a.doi{font-family:var(--display);font-weight:500}
+
+/* timelines */
+dl.rows{margin:0}
+dl.rows div{display:grid;grid-template-columns:8.5rem minmax(0,1fr);gap:.2rem 1.5rem;padding:.7rem 0;border-top:1px solid var(--line)}
+dl.rows div:first-child{border-top:0}
+dl.rows dt{font-family:var(--display);font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums}
+dl.rows dd{margin:0}
+dl.rows dd b{font-family:var(--display);font-weight:700}
+dl.rows dd span{display:block;color:var(--muted);font-size:.98rem}
+
+.skills p{margin:0 0 .9rem}
+.skills b{font-family:var(--display);font-weight:700}
+
+/* contact */
+.contact-links{display:flex;flex-wrap:wrap;gap:.6rem 1.75rem;margin:1rem 0 0;padding:0;list-style:none;font-family:var(--display);font-weight:500}
+
+footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);font-size:.95rem}
+
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr;gap:2.5rem}
+  section.block .wrap{grid-template-columns:1fr}
+  nav a{margin-left:1.1rem}
+}
+@media (max-width:520px){
+  dl.rows div{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .tree path{animation:none;stroke-dasharray:none;stroke-dashoffset:0}
+  .tip{animation:none;opacity:1}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top">Daniel McKnight</a>
+    <nav aria-label="Main">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1>Daniel McKnight</h1>
+      <p class="role">Bioinformatician in plant pathogen genomics and biosecurity</p>
+      <p class="lede">I use genomics and phylogenetics to work out which bacteria are threatening Australian crops. My PhD, with the University of Technology Sydney and NSW DPIRD, described four new <i>Xanthomonas</i> species and made the first Australian record of <i>Xanthomonas cannabis</i>.</p>
+      <div class="actions">
+        <a class="btn primary" href="cv.pdf">Download CV (PDF)</a>
+        <a class="btn mail" href="#contact" data-u="daniel.mcknight" data-d="dpird.nsw.gov.au">Email me</a>
+      </div>
+    </div>
+
+    <figure class="tree-fig">
+      <svg viewBox="0 0 560 350" role="img" aria-labelledby="tree-t tree-d">
+        <title id="tree-t">Schematic family tree of Xanthomonas species from my research</title>
+        <desc id="tree-d">A simplified tree showing four new species I described, the first Australian record of Xanthomonas cannabis, and other Xanthomonas. Not to scale.</desc>
+        <g class="tree">
+          <path pathLength="1" d="M20 182 H70 M70 100 V265" style="animation-delay:0s"/>
+          <path pathLength="1" d="M70 100 H170 M170 60 V140" style="animation-delay:.25s"/>
+          <path pathLength="1" d="M170 60 H220 M220 40 V80 M220 40 H360 M220 80 H360" style="animation-delay:.55s"/>
+          <path pathLength="1" d="M170 140 H220 M220 120 V160 M220 120 H360 M220 160 H360" style="animation-delay:.7s"/>
+          <path pathLength="1" d="M70 265 H110 M110 215 V295 M110 215 H360 M110 295 H150 M150 265 V325 M150 265 H360 M150 325 H360" style="animation-delay:.4s"/>
+        </g>
+        <g class="tip">
+          <a href="#publications"><circle cx="360" cy="40" r="6" fill="var(--gold)"/><text x="374" y="45"><tspan font-style="italic">X. rydalmerensis</tspan></text></a>
+          <a href="#publications"><circle cx="360" cy="80" r="6" fill="var(--gold)"/><text x="374" y="85"><tspan font-style="italic">X. bundabergensis</tspan></text></a>
+          <a href="#publications"><circle cx="360" cy="120" r="6" fill="var(--gold)"/><text x="374" y="125"><tspan font-style="italic">X. medicagonis</tspan></text></a>
+          <a href="#publications"><circle cx="360" cy="160" r="6" fill="var(--gold)"/><text x="374" y="165"><tspan font-style="italic">X. tesorieronis</tspan></text></a>
+          <a href="#publications"><circle cx="360" cy="215" r="6" fill="var(--teal)"/><text x="374" y="220"><tspan font-style="italic">X. cannabis</tspan></text></a>
+        </g>
+        <g class="tip other">
+          <circle cx="360" cy="265" r="5" fill="var(--bg)" stroke="var(--muted)" stroke-width="2"/><text x="374" y="270">other <tspan font-style="italic">Xanthomonas</tspan></text>
+          <circle cx="360" cy="325" r="5" fill="var(--bg)" stroke="var(--muted)" stroke-width="2"/><text x="374" y="330">other <tspan font-style="italic">Xanthomonas</tspan></text>
+        </g>
+      </svg>
+      <figcaption>
+        <span class="key"><span class="dot gold"></span>New species I described</span>
+        <span class="key"><span class="dot teal"></span>First Australian record</span>
+        <span>Schematic, not to scale.</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="wrap">
+    <h2>Research</h2>
+    <div class="content">
+      <p><i>Xanthomonas</i> is a genus of plant-pathogenic bacteria whose name comes from the yellow pigment in its colonies. Many Australian isolates sat in culture collections for decades without a species name. I sequenced and compared their genomes, tested whether they cause disease, and placed them on the tree.</p>
+      <p>The work sits between the lab and the computer: bacterial genome assembly, phylogenetics, pangenomics, virulence factor and genomic island identification, plus the plant assays and qPCR diagnostics that back the results up.</p>
+      <ul class="species">
+        <li><span class="dot gold"></span><div><strong><i>Xanthomonas rydalmerensis</i></strong><span class="sub">Isolated from strawberry at Rydalmere in 1976. Carries few virulence-associated factors and did not cause disease in a pathogenicity assay.</span></div></li>
+        <li><span class="dot gold"></span><div><strong><i>Xanthomonas bundabergensis</i></strong><span class="sub">Isolated from strawberry at Bundaberg in 2010.</span></div></li>
+        <li><span class="dot gold"></span><div><strong><i>Xanthomonas medicagonis</i></strong><span class="sub">Isolated from lucerne (<i>Medicago sativa</i>) at Tatham in 1981.</span></div></li>
+        <li><span class="dot gold"></span><div><strong><i>Xanthomonas tesorieronis</i></strong><span class="sub">Isolated from strawberry at Rockley in 1976. Named for plant pathologist Leonard Tesoriero.</span></div></li>
+        <li><span class="dot teal"></span><div><strong><i>Xanthomonas cannabis</i> in Australia</strong><span class="sub">Five historical isolates from zinnia and zucchini. Two lines of evidence, genomes and plant assays, show an emerging pathogen with genomic islands linked to virulence and drug resistance.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="publications">
+  <div class="wrap">
+    <h2>Publications</h2>
+    <div class="content">
+      <ol class="pubs">
+        <li>
+          <p class="title">Comparative genomics of ‘<i>Xanthomonas cannabis</i>’ reveals an emerging, diverse pathogen</p>
+          <p class="meta"><b>McKnight DJE</b>, Clackson L, Wong-Bajracharya J, Webster J, Worden P, Snijders F, Okoh EB, Djordjevic SP, Chapman TA, Bogema DR. <i>Microbial Genomics</i> 11(11), 2025. <a class="doi" href="https://www.microbiologyresearch.org/content/journal/mgen/10.1099/mgen.0.001588">doi:10.1099/mgen.0.001588</a></p>
+          <p class="blurb">Reports the presence of this pathogen in Australia and characterises how diverse it is.</p>
+        </li>
+        <li>
+          <p class="title"><i>Xanthomonas bundabergensis</i> sp. nov., <i>Xanthomonas medicagonis</i> sp. nov. and <i>Xanthomonas tesorieronis</i> sp. nov.: three members of group 1 <i>Xanthomonas</i></p>
+          <p class="meta"><b>McKnight DJE</b>, Wong-Bajracharya J, Okoh EB, Snijders F, Lidbetter F, Webster J, Haughton M, Djordjevic SP, Bogema DR, Chapman TA. <i>International Journal of Systematic and Evolutionary Microbiology</i> 75, 006686, 2025. <a class="doi" href="https://www.microbiologyresearch.org/content/journal/ijsem/10.1099/ijsem.0.006686">doi:10.1099/ijsem.0.006686</a></p>
+          <p class="blurb">Describes three new species from four historical Australian isolates.</p>
+        </li>
+        <li>
+          <p class="title"><i>Xanthomonas rydalmerensis</i> sp. nov., a non-pathogenic member of Group 1 <i>Xanthomonas</i></p>
+          <p class="meta"><b>McKnight DJE</b>, Wong-Bajracharya J, Okoh EB, Snijders F, Lidbetter F, Webster J, Haughton M, Darling AE, Djordjevic SP, Bogema DR, Chapman TA. <i>International Journal of Systematic and Evolutionary Microbiology</i> 74(3), 006294, 2024. <a class="doi" href="https://www.microbiologyresearch.org/content/journal/ijsem/10.1099/ijsem.0.006294">doi:10.1099/ijsem.0.006294</a></p>
+          <p class="blurb">Describes a new species from strawberry and shows it is non-pathogenic.</p>
+        </li>
+        <li>
+          <!-- TODO (Daniel): replace the title, authors, year and volume below with the details from the Plant Pathology paper page. -->
+          <p class="title">Paper in <i>Plant Pathology</i> (add title)</p>
+          <p class="meta"><b>McKnight DJE</b> et al. <i>Plant Pathology</i> (British Society for Plant Pathology). <a class="doi" href="https://bsppjournals.onlinelibrary.wiley.com/doi/abs/10.1111/ppa.14130">doi:10.1111/ppa.14130</a></p>
+        </li>
+      </ol>
+      <p style="margin-top:1.5rem">Full list and citation counts on <a href="https://scholar.google.com/citations?user=lDmCGIsAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a> and <a href="https://orcid.org/0009-0001-5928-9553">ORCID</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="experience">
+  <div class="wrap">
+    <h2>Experience and education</h2>
+    <div class="content">
+      <h3>Employment</h3>
+      <dl class="rows">
+        <div><dt>2021 to present</dt><dd><b>Technical assistant</b><span>Biotechnology and Plants laboratories, NSW Department of Primary Industries and Regional Development (DPIRD). High-throughput, NATA-accredited laboratory work.</span></dd></div>
+        <div><dt>2020 to 2021</dt><dd><b>Electrical contractor</b><span>Devika</span></dd></div>
+        <div><dt>2020</dt><dd><b>Summer casual researcher</b><span>Yu Research Group</span></dd></div>
+        <div><dt>2018</dt><dd><b>Biochemistry intern</b><span>Venus Shell Systems</span></dd></div>
+        <div><dt>2015 to 2020</dt><dd><b>Sales assistant</b><span>Jaycar Electronics, Wollongong</span></dd></div>
+      </dl>
+
+      <h3>Education</h3>
+      <dl class="rows">
+        <div><dt>2021 to 2025</dt><dd><b>Doctor of Philosophy (thesis submitted)</b><span>Collaborative project between the University of Technology Sydney and NSW DPIRD</span></dd></div>
+        <div><dt>2020</dt><dd><b>Bachelor of Science (Honours), first class</b><span>University of Wollongong</span></dd></div>
+        <div><dt>2016 to 2019</dt><dd><b>Bachelor of Science (Biological Sciences)</b><span>University of Wollongong</span></dd></div>
+      </dl>
+
+      <h3>Awards and certificates</h3>
+      <dl class="rows">
+        <div><dt>2024</dt><dd><b>Store and handle dangerous goods and hazardous substances (TLID0021)</b></dd></div>
+        <div><dt>2023</dt><dd><b>Vice-Chancellor’s Conference Fund</b><span>University of Technology Sydney</span></dd></div>
+        <div><dt>2021</dt><dd><b>Australian Research Council (ARC) Linkage scholarship and stipend</b></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <div class="content skills">
+      <p><b>Genomics and phylogenetics.</b> Bacterial genome assembly, phylogenetics, genomic and pangenomic analysis, virulence factor and genomic island identification.</p>
+      <p><b>Programming and pipelines.</b> Python, R and GNU Bash from five years of bioinformatics and computational biophysics research. I build automated pipelines with QC checkpoints, error handling and reproducibility.</p>
+      <p><b>Molecular diagnostics.</b> Developing and validating qPCR primers, including an assay for pre-symptomatic detection of <i>Xanthomonas campestris</i> in broccoli.</p>
+      <p><b>Data analysis.</b> Data manipulation and visualisation for published papers and my thesis.</p>
+      <p><b>Collaboration.</b> Coordinated research across 12 co-authors from four institutes. I taught myself computational biophysics and bioinformatics coming from a biological science background.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="community">
+  <div class="wrap">
+    <h2>Community</h2>
+    <div class="content">
+      <dl class="rows">
+        <div><dt>2023 to present</dt><dd><b>Volunteer</b><span>Illawarra Potters Inc., a community pottery studio</span></dd></div>
+        <div><dt>2020</dt><dd><b>Student representative</b><span>SMAH honours course, University of Wollongong</span></dd></div>
+        <div><dt>2019</dt><dd><b>Learning Labs volunteer</b><span>Taught high school students in summer STEM classes, University of Wollongong</span></dd></div>
+        <div><dt>2018 to 2019</dt><dd><b>BioNet</b><span>Social and support network for biology students, University of Wollongong</span></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <div class="content">
+      <p>I’m looking to keep contributing to Australian biosecurity. If you work on plant disease, diagnostics or pathogen genomics, get in touch.</p>
+      <ul class="contact-links">
+        <li><a class="mail" href="#contact" data-u="daniel.mcknight" data-d="dpird.nsw.gov.au" data-show="1">daniel.mcknight [at] dpird.nsw.gov.au</a></li>
+        <li><a href="https://www.linkedin.com/in/daniel-mcknight-59a742167/">LinkedIn</a></li>
+        <li><a href="https://scholar.google.com/citations?user=lDmCGIsAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a></li>
+        <li><a href="https://orcid.org/0009-0001-5928-9553">ORCID</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Daniel McKnight. Views on this site are my own.</div>
+</footer>
+
+<script>
+// Assemble the email link in the browser so scrapers don't find it in the HTML.
+document.querySelectorAll('.mail').forEach(function (el) {
+  var addr = el.dataset.u + '@' + el.dataset.d;
+  el.href = 'mailto:' + addr;
+  if (el.dataset.show) el.textContent = addr;
+});
+</script>
+</body>
+</html>
