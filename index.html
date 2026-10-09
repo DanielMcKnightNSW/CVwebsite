@@ -52,6 +52,18 @@ h1{font-family:var(--display);font-weight:700;font-size:clamp(2.8rem,7.5vw,5.2re
 .btn.primary{background:var(--gold);border-color:var(--gold);color:var(--on-gold)}
 .btn:hover{text-decoration:underline}
 
+/* portrait */
+.id{display:flex;align-items:center;gap:1.25rem;margin:0 0 1.25rem}
+.id img{width:104px;height:104px;border-radius:50%;object-fit:cover;flex:none;background:var(--line)}
+.id .role{margin:0}
+
+/* steps */
+.steps{margin:1rem 0 0;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:2rem 1fr;gap:0 .5rem;padding:.8rem 0;border-top:1px solid var(--line)}
+.steps li:last-child{border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s);font-family:var(--display);font-weight:700;color:var(--gold-ink)}
+.steps b{font-family:var(--display);font-weight:700}
+
 /* tree */
 .tree-fig{margin:0}
 .tree-fig svg{width:100%;height:auto;display:block}
@@ -103,6 +115,7 @@ dl.rows dt{font-family:var(--display);font-weight:500;color:var(--muted);font-va
 dl.rows dd{margin:0}
 dl.rows dd b{font-family:var(--display);font-weight:700}
 dl.rows dd span{display:block;color:var(--muted);font-size:.98rem}
+dl.rows dd p{margin:.2rem 0 0}
 
 .skills p{margin:0 0 .9rem}
 .skills b{font-family:var(--display);font-weight:700}
@@ -134,7 +147,8 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
   <div class="wrap">
     <a class="mark" href="#top">Daniel McKnight</a>
     <nav aria-label="Main">
-      <a href="#research">Research</a>
+      <a href="#current">Current research</a>
+      <a href="#research">PhD research</a>
       <a href="#publications">Publications</a>
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
@@ -147,7 +161,10 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
   <div class="wrap">
     <div>
       <h1>Daniel McKnight</h1>
-      <p class="role">Bioinformatician in plant pathogen genomics and biosecurity</p>
+      <div class="id">
+        <img src="photo.jpg" width="104" height="104" alt="Daniel McKnight, smiling, wearing glasses">
+        <p class="role">Bioinformatician in plant pathogen genomics and biosecurity</p>
+      </div>
       <p class="lede">I use genomics and phylogenetics to work out which bacteria are threatening Australian crops. My PhD, with the University of Technology Sydney and NSW DPIRD, described four new <i>Xanthomonas</i> species and made the first Australian record of <i>Xanthomonas cannabis</i>.</p>
       <div class="actions">
         <a class="btn primary" href="cv.pdf">Download CV (PDF)</a>
@@ -156,15 +173,15 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
     </div>
 
     <figure class="tree-fig">
-      <svg viewBox="0 0 560 350" role="img" aria-labelledby="tree-t tree-d">
+      <svg viewBox="0 0 560 300" role="img" aria-labelledby="tree-t tree-d">
         <title id="tree-t">Schematic family tree of Xanthomonas species from my research</title>
         <desc id="tree-d">A simplified tree showing four new species I described, the first Australian record of Xanthomonas cannabis, and other Xanthomonas. Not to scale.</desc>
         <g class="tree">
-          <path pathLength="1" d="M20 182 H70 M70 100 V265" style="animation-delay:0s"/>
+          <path pathLength="1" d="M20 170 H70 M70 100 V240" style="animation-delay:0s"/>
           <path pathLength="1" d="M70 100 H170 M170 60 V140" style="animation-delay:.25s"/>
           <path pathLength="1" d="M170 60 H220 M220 40 V80 M220 40 H360 M220 80 H360" style="animation-delay:.55s"/>
           <path pathLength="1" d="M170 140 H220 M220 120 V160 M220 120 H360 M220 160 H360" style="animation-delay:.7s"/>
-          <path pathLength="1" d="M70 265 H110 M110 215 V295 M110 215 H360 M110 295 H150 M150 265 V325 M150 265 H360 M150 325 H360" style="animation-delay:.4s"/>
+          <path pathLength="1" d="M70 240 H110 M110 215 V265 M110 215 H360 M110 265 H360" style="animation-delay:.4s"/>
         </g>
         <g class="tip">
           <a href="#publications"><circle cx="360" cy="40" r="6" fill="var(--gold)"/><text x="374" y="45"><tspan font-style="italic">X. rydalmerensis</tspan></text></a>
@@ -175,7 +192,6 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
         </g>
         <g class="tip other">
           <circle cx="360" cy="265" r="5" fill="var(--bg)" stroke="var(--muted)" stroke-width="2"/><text x="374" y="270">other <tspan font-style="italic">Xanthomonas</tspan></text>
-          <circle cx="360" cy="325" r="5" fill="var(--bg)" stroke="var(--muted)" stroke-width="2"/><text x="374" y="330">other <tspan font-style="italic">Xanthomonas</tspan></text>
         </g>
       </svg>
       <figcaption>
@@ -187,12 +203,36 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
   </div>
 </section>
 
+<section class="block" id="current">
+  <div class="wrap">
+    <h2>Current research</h2>
+    <div class="content">
+      <p>At NSW DPIRD I’m building, from scratch, software that designs and checks DNA-based diagnostic tests for plant pathogens. Fast, reliable tests are a first line of defence in biosecurity, but designing a good one by hand is slow and easy to get wrong. This pipeline automates the whole job, from raw sequences to a ranked shortlist of tests.</p>
+      <ol class="steps">
+        <li><div><b>Collect.</b> Downloads and prepares the genome sequences for any organism you choose.</div></li>
+        <li><div><b>Find targets.</b> Locates the DNA regions that tell the target apart from its close relatives.</div></li>
+        <li><div><b>Design.</b> Generates every feasible test in those regions, aiming to catch as many known variants of the pathogen as possible. It covers PCR, qPCR, LAMP and CRISPR-based tests, plus multiplex tests that look for several targets at once and degenerate primers that tolerate natural variation in the DNA.</div></li>
+        <li><div><b>Check quality.</b> Screens every design for the things that make tests fail in the lab: primers that fold back on themselves or stick to each other, runs of repeated bases, and poorly matched melting temperatures.</div></li>
+        <li><div><b>Report.</b> Returns the best candidates, with statistics on how many variants of the species each one detects.</div></li>
+      </ol>
+      <p style="margin-top:1.5rem">Already have primers? A second mode takes them as input, reports how well they perform and how many variants they capture, and suggests better primers aimed at the same region.</p>
+      <p>A graphical interface lets non-specialists run it without any bioinformatics, while adjustable thresholds and settings give experienced users full control.</p>
+      <dl class="rows" style="margin-top:1.5rem">
+        <div><dt>Status</dt><dd>In development</dd></div>
+        <div><dt>Built by</dt><dd>NSW DPIRD, in collaboration with Deakin University</dd></div>
+        <div><dt>Funding</dt><dd>Australian Government Department of Agriculture, Fisheries and Forestry (DAFF)</dd></div>
+        <div><dt>Validation</dt><dd>Deakin University is testing the pipeline on three different pathogen systems</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
 <section class="block" id="research">
   <div class="wrap">
-    <h2>Research</h2>
+    <h2>PhD research</h2>
     <div class="content">
-      <p><i>Xanthomonas</i> is a genus of plant-pathogenic bacteria whose name comes from the yellow pigment in its colonies. Many Australian isolates sat in culture collections for decades without a species name. I sequenced and compared their genomes, tested whether they cause disease, and placed them on the tree.</p>
-      <p>The work sits between the lab and the computer: bacterial genome assembly, phylogenetics, pangenomics, virulence factor and genomic island identification, plus the plant assays and qPCR diagnostics that back the results up.</p>
+      <p><i>Xanthomonas</i> is a genus of bacteria that cause disease in plants, infecting several hundred crop species including rice, citrus and brassicas such as broccoli. Its name comes from the yellow pigment in its colonies. Many Australian isolates sat in culture collections for decades without a species name. In my PhD I sequenced and compared their genomes, tested whether they cause disease, and placed them on the tree.</p>
+      <p>The work covered bacterial genome assembly, phylogenetics, pangenomics, and the identification of virulence factors and genomic islands, backed up by plant infection assays.</p>
       <ul class="species">
         <li><span class="dot gold"></span><div><strong><i>Xanthomonas rydalmerensis</i></strong><span class="sub">Isolated from strawberry at Rydalmere in 1976. Carries few virulence-associated factors and did not cause disease in a pathogenicity assay.</span></div></li>
         <li><span class="dot gold"></span><div><strong><i>Xanthomonas bundabergensis</i></strong><span class="sub">Isolated from strawberry at Bundaberg in 2010.</span></div></li>
@@ -225,9 +265,9 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
           <p class="blurb">Describes a new species from strawberry and shows it is non-pathogenic.</p>
         </li>
         <li>
-          <!-- TODO (Daniel): replace the title, authors, year and volume below with the details from the Plant Pathology paper page. -->
-          <p class="title">Paper in <i>Plant Pathology</i> (add title)</p>
-          <p class="meta"><b>McKnight DJE</b> et al. <i>Plant Pathology</i> (British Society for Plant Pathology). <a class="doi" href="https://bsppjournals.onlinelibrary.wiley.com/doi/abs/10.1111/ppa.14130">doi:10.1111/ppa.14130</a></p>
+          <p class="title">Phylogenomic Sequence Analysis of <i>Xanthomonas citri</i> Pathovars <i>anacardii</i> and <i>mangiferaeindicae</i> Reveals a Diversity of Pathogenicity Factors</p>
+          <p class="meta">Okoh EB, Wong-Bajracharya J, <b>McKnight DJE</b>, Snijders F, Webster J, Riegler M, Bogema DR, Chapman TA. <i>Plant Pathology</i>. <a class="doi" href="https://bsppjournals.onlinelibrary.wiley.com/doi/abs/10.1111/ppa.14130">doi:10.1111/ppa.14130</a></p>
+          <p class="blurb">Compares the genomes of the bacteria behind mango and cashew bacterial black spot to find the genes that help them infect plants.</p>
         </li>
       </ol>
       <p style="margin-top:1.5rem">Full list and citation counts on <a href="https://scholar.google.com/citations?user=lDmCGIsAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a> and <a href="https://orcid.org/0009-0001-5928-9553">ORCID</a>.</p>
@@ -241,18 +281,19 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
     <div class="content">
       <h3>Employment</h3>
       <dl class="rows">
-        <div><dt>2021 to present</dt><dd><b>Technical assistant</b><span>Biotechnology and Plants laboratories, NSW Department of Primary Industries and Regional Development (DPIRD). High-throughput, NATA-accredited laboratory work.</span></dd></div>
-        <div><dt>2020 to 2021</dt><dd><b>Electrical contractor</b><span>Devika</span></dd></div>
-        <div><dt>2020</dt><dd><b>Summer casual researcher</b><span>Yu Research Group</span></dd></div>
-        <div><dt>2018</dt><dd><b>Biochemistry intern</b><span>Venus Shell Systems</span></dd></div>
-        <div><dt>2015 to 2020</dt><dd><b>Sales assistant</b><span>Jaycar Electronics, Wollongong</span></dd></div>
+        <div><dt>2025 to present</dt><dd><b>Bioinformatician</b><span>New South Wales Department of Primary Industries and Regional Development (DPIRD)</span><p>Building software from scratch that automates the design and testing of diagnostic assays for plant pathogens.</p></dd></div>
+        <div><dt>2021 to 2025</dt><dd><b>Technical assistant</b><span>Biotechnology and Plants laboratories, NSW DPIRD</span><p>Worked in high-throughput, NATA-accredited laboratories, learning what makes a diagnostic result reliable and what data a lab needs from an analysis.</p></dd></div>
+        <div><dt>2020 to 2021</dt><dd><b>Electrical contractor</b><span>Devika</span><p>Diagnosed and repaired electrical faults, building the methodical troubleshooting habits I now use to debug analysis pipelines.</p></dd></div>
+        <div><dt>2020</dt><dd><b>Summer casual researcher</b><span>Yu Research Group</span><p>Began computational biophysics research, teaching myself Python and Bash to analyse scientific data.</p></dd></div>
+        <div><dt>2018</dt><dd><b>Biochemistry intern</b><span>Venus Shell Systems</span><p>Gained hands-on laboratory biochemistry experience, grounding me in how the data I now analyse is generated.</p></dd></div>
+        <div><dt>2015 to 2020</dt><dd><b>Sales assistant</b><span>Jaycar Electronics, Wollongong</span><p>Explained technical electronics to customers in plain language, a skill I use to make bioinformatics accessible to non-specialists.</p></dd></div>
       </dl>
 
       <h3>Education</h3>
       <dl class="rows">
-        <div><dt>2021 to 2025</dt><dd><b>Doctor of Philosophy (thesis submitted)</b><span>Collaborative project between the University of Technology Sydney and NSW DPIRD</span></dd></div>
+        <div><dt>2021 to 2025</dt><dd><b>Doctor of Philosophy</b><span>Collaborative project between the University of Technology Sydney and NSW DPIRD</span></dd></div>
         <div><dt>2020</dt><dd><b>Bachelor of Science (Honours), first class</b><span>University of Wollongong</span></dd></div>
-        <div><dt>2016 to 2019</dt><dd><b>Bachelor of Science (Biological Sciences)</b><span>University of Wollongong</span></dd></div>
+        <div><dt>2016 to 2019</dt><dd><b>Bachelor of Science, major in Biotechnology</b><span>University of Wollongong</span></dd></div>
       </dl>
 
       <h3>Awards and certificates</h3>
@@ -280,7 +321,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
 
 <section class="block" id="community">
   <div class="wrap">
-    <h2>Community</h2>
+    <h2>Community involvement</h2>
     <div class="content">
       <dl class="rows">
         <div><dt>2023 to present</dt><dd><b>Volunteer</b><span>Illawarra Potters Inc., a community pottery studio</span></dd></div>
