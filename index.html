@@ -50,7 +50,8 @@ footer .wrap{max-width:96rem;padding:0 clamp(1.25rem,4vw,3rem)}
   padding:0;
   position:relative;
   border-left:0;
-  margin-left:.5rem;
+  /* Shift the list container right so the line sits perfectly centered inside the 0.8rem width circle */
+  margin-left:.4rem;
 }
 .toc ol::before{
   content:"";
@@ -80,7 +81,7 @@ footer .wrap{max-width:96rem;padding:0 clamp(1.25rem,4vw,3rem)}
   box-sizing:border-box;     /* border now sits inside the size */
   width:.8rem;
   height:.8rem;
-  left:calc(1px - .4rem);    /* the line is 2px wide at left:0, so its centre is 1px in */
+  left:-.4rem;               /* Align circle center directly over the 2px vertical line at left:0 */
   top:50%;
   margin-top:-.4rem;         /* half the height, so it's centred vertically */
   border-radius:50%;
