@@ -34,10 +34,10 @@ a:hover{text-decoration-thickness:2px}
 i{font-style:italic}
 
 /* layout */
-.page{max-width:1180px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:200px minmax(0,1fr);column-gap:3.5rem}
+.page{max-width:1340px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:200px minmax(0,1fr);column-gap:3.5rem}
 .page main{grid-column:2;grid-row:1;min-width:0}
 main .wrap{max-width:none;padding:0}
-footer .wrap{max-width:1180px}
+footer .wrap{max-width:1340px}
 
 /* section index: a growing branch on desktop, a chip bar on mobile */
 .toc{grid-column:1;grid-row:1;position:sticky;top:2rem;align-self:start;margin-top:3.25rem}
@@ -99,7 +99,7 @@ section.block h2{margin-bottom:1.5rem}
 h2{font-family:var(--display);font-weight:700;font-size:1.5rem;line-height:1.2;margin:0;letter-spacing:-.01em}
 h3{font-family:var(--display);font-weight:700;font-size:1.1rem;margin:2rem 0 .75rem}
 h3:first-child{margin-top:0}
-.content{max-width:68ch}
+.content{max-width:74ch}
 .content p{margin:0 0 1rem}
 
 /* species rows */
@@ -228,7 +228,6 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
       <figcaption>
         <span class="key"><span class="dot gold"></span>New species I described</span>
         <span class="key"><span class="dot teal"></span>First Australian record</span>
-        <span>Schematic, not to scale.</span>
       </figcaption>
     </figure>
   </div>
@@ -238,10 +237,10 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
   <div class="wrap">
     <h2>Current research</h2>
     <div class="content">
-      <p>At NSW DPIRD I’m building a software pipeline that automates the design and checking of molecular diagnostic tests for pathogens. It handles everything from acquiring sequence data and finding diagnostically relevant regions to designing assays (PCR, qPCR, LAMP, RPA and CRISPR) and performing comprehensive quality control.</p>
+      <p>At NSW DPIRD I’m building a software pipeline that automates the design and checking of molecular diagnostic tests for pathogens. It handles everything from acquiring sequence data to finding diagnostically relevant regions to designing assays (PCR, qPCR, LAMP, RPA and CRISPR) and performing comprehensive quality control.</p>
       <ol class="steps">
         <li><div><b>Collect.</b> Downloads and prepares genome sequences for any organism of interest.</div></li>
-        <li><div><b>Find targets.</b> Locates the DNA regions that tell the target apart from its close relatives.</div></li>
+        <li><div><b>Find targets.</b> Locates the DNA regions that tell the target apart from plant hosts and closely related species.</div></li>
         <li><div><b>Design.</b> Generates every feasible assay within those regions, maximising coverage of known variants of the pathogen. It supports PCR, qPCR, LAMP, RPA and CRISPR-based assays, as well as multiplex designs and degenerate primers that accommodate natural sequence variation.</div></li>
         <li><div><b>Quality control.</b> Screens each design for problems that cause assays to fail, including primers that bind themselves or each other (dimers and hairpins), runs of repeated bases, and poorly matched melting temperatures.</div></li>
         <li><div><b>Report.</b> Ranks the best candidates and reports how many known variants of the species each one detects.</div></li>
@@ -265,11 +264,11 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
       <p><i>Xanthomonas</i> is a genus of bacteria that cause disease in plants, infecting several hundred crop species including rice, citrus and brassicas such as broccoli. Many Australian isolates sat in culture collections for decades without a species name. In my PhD I sequenced and compared their genomes, tested whether they cause disease, and carried out a range of genomic analyses.</p>
       <p>The work covered bacterial genome assembly, phylogenetics, pangenomics, genomic relatedness indices, and the identification of virulence factors and genomic islands, backed up by plant infection assays.</p>
       <ul class="species">
-        <li><span class="dot gold"></span><div><strong><i>Xanthomonas rydalmerensis</i></strong><span class="sub">Isolated from strawberry at Rydalmere in 1976. Carries few virulence-associated factors and did not cause disease in a pathogenicity assay.</span></div></li>
+        <li><span class="dot gold"></span><div><strong><i>Xanthomonas rydalmerensis</i></strong><span class="sub">Isolated from strawberry at Rydalmere in 1976.</span></div></li>
         <li><span class="dot gold"></span><div><strong><i>Xanthomonas bundabergensis</i></strong><span class="sub">Isolated from strawberry at Bundaberg in 2010.</span></div></li>
         <li><span class="dot gold"></span><div><strong><i>Xanthomonas medicagonis</i></strong><span class="sub">Isolated from lucerne (<i>Medicago sativa</i>) at Tatham in 1981.</span></div></li>
         <li><span class="dot gold"></span><div><strong><i>Xanthomonas tesorieronis</i></strong><span class="sub">Isolated from strawberry at Rockley in 1976. Named for plant pathologist Leonard Tesoriero.</span></div></li>
-        <li><span class="dot teal"></span><div><strong><i>Xanthomonas cannabis</i></strong><span class="sub">We identified and formally named the species, demonstrated that they infect six plant species, and analysed their genomes to evaluate Australian biosecurity risks.</span></div></li>
+        <li><span class="dot teal"></span><div><strong><i>Xanthomonas cannabis</i></strong><span class="sub">First reported as a hemp pathogen in 1947, we formally established <i>Xanthomonas cannabis</i> as a valid species and made the first report of its presence in Australia.</span></div></li>
       </ul>
     </div>
   </div>
@@ -371,6 +370,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
       <ul class="contact-links">
         <li><a class="mail" href="#contact" data-u="daniel.mcknight" data-d="dpird.nsw.gov.au" data-show="1">daniel.mcknight [at] dpird.nsw.gov.au</a></li>
         <li><a href="https://www.linkedin.com/in/daniel-mcknight-59a742167/">LinkedIn</a></li>
+        <li><a href="https://github.com/DanielMcKnightNSW">GitHub</a></li>
         <li><a href="https://scholar.google.com/citations?user=lDmCGIsAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a></li>
         <li><a href="https://orcid.org/0009-0001-5928-9553">ORCID</a></li>
       </ul>
