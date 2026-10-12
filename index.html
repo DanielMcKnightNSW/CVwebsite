@@ -23,21 +23,21 @@
   :root{--bg:#0E1F1C; --surface:#142A26; --ink:#E8F0EC; --muted:#9DB5AE; --line:#254039; --gold:#F2B705; --gold-ink:#F2B705; --teal:#5CC4B2; --on-gold:#0E1F1C;}
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:1rem}
+html{scroll-behavior:smooth;scroll-padding-top:1rem;font-size:clamp(100%,76% + .5vw,120%)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.7}
 a{color:var(--teal);text-decoration-thickness:1px;text-underline-offset:3px}
 a:hover{text-decoration-thickness:2px}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:2px}
 .skip{position:absolute;left:-999px;top:0;background:var(--gold);color:var(--on-gold);padding:.5rem 1rem;z-index:10}
 .skip:focus{left:0}
-.wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem}
+.wrap{max-width:96rem;margin:0 auto;padding:0 1.5rem}
 i{font-style:italic}
 
 /* layout */
-.page{max-width:1340px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:200px minmax(0,1fr);column-gap:3.5rem}
+.page{max-width:96rem;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem);display:grid;grid-template-columns:clamp(9.5rem,14vw,13rem) minmax(0,1fr);column-gap:clamp(2rem,5vw,4.5rem)}
 .page main{grid-column:2;grid-row:1;min-width:0}
 main .wrap{max-width:none;padding:0}
-footer .wrap{max-width:1340px}
+footer .wrap{max-width:96rem;padding:0 clamp(1.25rem,4vw,3rem)}
 
 /* section index: a growing branch on desktop, a chip bar on mobile */
 .toc{grid-column:1;grid-row:1;position:sticky;top:2rem;align-self:start;margin-top:3.25rem}
@@ -58,7 +58,7 @@ footer .wrap{max-width:1340px}
 .hero .wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:2.5rem;align-items:center}
 h1{font-family:var(--display);font-weight:700;font-size:clamp(2.6rem,7vw,4.6rem);line-height:.98;letter-spacing:-.03em;margin:0 0 1.25rem}
 .role{font-family:var(--display);font-weight:500;font-size:1.2rem;line-height:1.35;margin:0 0 1.25rem;max-width:32ch}
-.lede{max-width:46ch;margin:0 0 1.75rem;color:var(--muted)}
+.lede{max-width:60ch;margin:0 0 1.75rem;color:var(--muted)}
 .actions{display:flex;flex-wrap:wrap;gap:.75rem}
 .btn{font-family:var(--display);font-weight:700;font-size:1rem;padding:.7rem 1.25rem;border-radius:6px;text-decoration:none;border:2px solid var(--ink);color:var(--ink);display:inline-block}
 .btn.primary{background:var(--gold);border-color:var(--gold);color:var(--on-gold)}
@@ -66,7 +66,7 @@ h1{font-family:var(--display);font-weight:700;font-size:clamp(2.6rem,7vw,4.6rem)
 
 /* portrait */
 .id{display:flex;align-items:center;gap:1.25rem;margin:0 0 1.25rem}
-.id img{width:104px;height:104px;border-radius:50%;object-fit:cover;flex:none;background:var(--line)}
+.id img{width:6.5rem;height:6.5rem;border-radius:50%;object-fit:cover;flex:none;background:var(--line)}
 .id .role{margin:0}
 
 /* steps */
@@ -77,7 +77,7 @@ h1{font-family:var(--display);font-weight:700;font-size:clamp(2.6rem,7vw,4.6rem)
 .steps b{font-family:var(--display);font-weight:700}
 
 /* tree */
-.tree-fig{margin:0;max-width:560px}
+.tree-fig{margin:0;max-width:35rem}
 .tree-fig svg{width:100%;height:auto;display:block}
 .tree path{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.5s ease-out forwards}
 .tip{opacity:0;animation:fade .6s ease-out 1.6s forwards}
@@ -99,7 +99,7 @@ section.block h2{margin-bottom:1.5rem}
 h2{font-family:var(--display);font-weight:700;font-size:1.5rem;line-height:1.2;margin:0;letter-spacing:-.01em}
 h3{font-family:var(--display);font-weight:700;font-size:1.1rem;margin:2rem 0 .75rem}
 h3:first-child{margin-top:0}
-.content{max-width:74ch}
+.content{max-width:none}
 .content p{margin:0 0 1rem}
 
 /* species rows */
@@ -143,6 +143,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
 @media (max-width:959px){
   html{scroll-padding-top:3.75rem}
   .page{display:block;padding:0 1.25rem}
+  footer .wrap{padding:0 1.25rem}
   .toc{position:sticky;top:0;z-index:20;margin:0 -1.25rem;padding:0 1.25rem;background:var(--bg);border-bottom:1px solid var(--line)}
   @supports (backdrop-filter:blur(8px)){
     .toc{background:color-mix(in srgb,var(--bg) 90%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
@@ -237,7 +238,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
   <div class="wrap">
     <h2>Current research</h2>
     <div class="content">
-      <p>At NSW DPIRD I’m building a software pipeline that automates the design and checking of molecular diagnostic tests for pathogens. It handles everything from acquiring sequence data and finding diagnostically relevant regions to designing assays (PCR, qPCR, LAMP, RPA and CRISPR) and performing comprehensive quality control.</p>
+      <p>At NSW DPIRD I’m building a software pipeline that automates the design and checking of molecular diagnostic tests for pathogens. It handles everything from acquiring sequence data to finding diagnostically relevant regions to designing assays (PCR, qPCR, LAMP, RPA and CRISPR) and performing comprehensive quality control.</p>
       <ol class="steps">
         <li><div><b>Collect.</b> Downloads and prepares genome sequences for any organism of interest.</div></li>
         <li><div><b>Find targets.</b> Locates the DNA regions that tell the target apart from plant hosts and closely related species.</div></li>
