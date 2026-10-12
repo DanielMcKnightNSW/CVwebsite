@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en-AU">
 <head>
@@ -42,12 +43,51 @@ footer .wrap{max-width:96rem;padding:0 clamp(1.25rem,4vw,3rem)}
 /* section index: a growing branch on desktop, a chip bar on mobile */
 .toc{grid-column:1;grid-row:1;position:sticky;top:2rem;align-self:start;margin-top:3.25rem}
 .toc-name{display:block;font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none;margin-bottom:1.5rem}
-.toc ol{list-style:none;margin:0;padding:0;position:relative;border-left:2px solid var(--line);margin-left:5px}
-.toc ol::after{content:"";position:absolute;left:-2px;top:0;width:2px;height:var(--p,0px);background:var(--gold);transition:height .4s ease}
+
+/* FIX: draw both lines through the exact centre of each navigation dot */
+.toc ol{
+  list-style:none;
+  margin:0;
+  padding:0;
+  position:relative;
+  border-left:0;
+  margin-left:5px;
+}
+.toc ol::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:2px;
+  background:var(--line);
+}
+.toc ol::after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:2px;
+  height:var(--p,0px);
+  background:var(--gold);
+  transition:height .4s ease;
+}
 .toc li{position:relative}
 .toc a{display:block;position:relative;padding:.4rem 0 .4rem 1.25rem;font-family:var(--display);font-weight:500;font-size:.98rem;color:var(--muted);text-decoration:none;transition:color .2s}
 .toc a::after{content:attr(data-label);display:block;height:0;overflow:hidden;visibility:hidden;font-weight:700}
-.toc a::before{content:"";position:absolute;left:-7px;top:50%;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:var(--bg);border:2px solid var(--line);transition:background .25s,border-color .25s,transform .25s}
+.toc a::before{
+  content:"";
+  position:absolute;
+  left:-5px;
+  top:50%;
+  width:10px;
+  height:10px;
+  margin-top:-5px;
+  border-radius:50%;
+  background:var(--bg);
+  border:2px solid var(--line);
+  transition:background .25s,border-color .25s,transform .25s;
+}
 .toc a:hover{color:var(--ink);text-decoration:none}
 .toc li.done a::before{border-color:var(--gold)}
 .toc a[aria-current]{color:var(--ink);font-weight:700}
@@ -151,6 +191,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
   .toc-name{display:none}
   .toc ol{display:flex;gap:.25rem;overflow-x:auto;border-left:0;margin-left:0;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 2rem),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 2rem),transparent)}
   .toc ol::-webkit-scrollbar{display:none}
+  .toc ol::before{display:none}
   .toc ol::after{display:none}
   .toc li{flex:none}
   .toc a{padding:.9rem .75rem;white-space:nowrap}
