@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Daniel McKnight | Bioinformatician, plant pathogen genomics</title>
-<meta name="description" content="Daniel McKnight is a bioinformatician at NSW DPIRD. His PhD described four new Xanthomonas species and the first Australian record of Xanthomonas cannabis.">
+<meta name="description" content="Daniel McKnight is a bioinformatician at NSW DPIRD building software for Australian biosecurity. His PhD described and named new Xanthomonas species and assessed their risk to agriculture.">
 <meta property="og:title" content="Daniel McKnight | Bioinformatician">
 <meta property="og:description" content="Genomics, phylogenetics and diagnostics for Australian plant biosecurity.">
 <meta property="og:type" content="website">
@@ -33,19 +33,31 @@ a:hover{text-decoration-thickness:2px}
 .wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem}
 i{font-style:italic}
 
-/* header */
-header.top{padding:1.25rem 0}
-header.top .wrap{display:flex;flex-wrap:wrap;gap:.75rem 2rem;justify-content:space-between;align-items:baseline}
-.mark{font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none}
-nav a{font-family:var(--display);font-weight:500;font-size:.98rem;color:var(--muted);text-decoration:none;margin-left:1.5rem}
-nav a:first-child{margin-left:0}
-nav a:hover{color:var(--ink);text-decoration:underline}
+/* layout */
+.page{max-width:1180px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:200px minmax(0,1fr);column-gap:3.5rem}
+.page main{grid-column:2;grid-row:1;min-width:0}
+main .wrap{max-width:none;padding:0}
+footer .wrap{max-width:1180px}
+
+/* section index: a growing branch on desktop, a chip bar on mobile */
+.toc{grid-column:1;grid-row:1;position:sticky;top:2rem;align-self:start;margin-top:3.25rem}
+.toc-name{display:block;font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none;margin-bottom:1.5rem}
+.toc ol{list-style:none;margin:0;padding:0;position:relative;border-left:2px solid var(--line)}
+.toc ol::after{content:"";position:absolute;left:-2px;top:0;width:2px;height:var(--p,0px);background:var(--gold);transition:height .4s ease}
+.toc li{position:relative}
+.toc a{display:block;position:relative;padding:.4rem 0 .4rem 1.25rem;font-family:var(--display);font-weight:500;font-size:.98rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.toc a::after{content:attr(data-label);display:block;height:0;overflow:hidden;visibility:hidden;font-weight:700}
+.toc a::before{content:"";position:absolute;left:-6px;top:50%;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:var(--bg);border:2px solid var(--line);transition:background .25s,border-color .25s,transform .25s}
+.toc a:hover{color:var(--ink);text-decoration:none}
+.toc li.done a::before{border-color:var(--gold)}
+.toc a[aria-current]{color:var(--ink);font-weight:700}
+.toc a[aria-current]::before{background:var(--gold);border-color:var(--gold);transform:scale(1.3)}
 
 /* hero */
-.hero{padding:3rem 0 4.5rem}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:3rem;align-items:center}
-h1{font-family:var(--display);font-weight:700;font-size:clamp(2.8rem,7.5vw,5.2rem);line-height:.98;letter-spacing:-.03em;margin:0 0 1.25rem}
-.role{font-family:var(--display);font-weight:500;font-size:1.3rem;line-height:1.35;margin:0 0 1.25rem;max-width:26ch}
+.hero{padding:3rem 0 4rem}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:2.5rem;align-items:center}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2.6rem,7vw,4.6rem);line-height:.98;letter-spacing:-.03em;margin:0 0 1.25rem}
+.role{font-family:var(--display);font-weight:500;font-size:1.2rem;line-height:1.35;margin:0 0 1.25rem;max-width:32ch}
 .lede{max-width:46ch;margin:0 0 1.75rem;color:var(--muted)}
 .actions{display:flex;flex-wrap:wrap;gap:.75rem}
 .btn{font-family:var(--display);font-weight:700;font-size:1rem;padding:.7rem 1.25rem;border-radius:6px;text-decoration:none;border:2px solid var(--ink);color:var(--ink);display:inline-block}
@@ -65,11 +77,11 @@ h1{font-family:var(--display);font-weight:700;font-size:clamp(2.8rem,7.5vw,5.2re
 .steps b{font-family:var(--display);font-weight:700}
 
 /* tree */
-.tree-fig{margin:0}
+.tree-fig{margin:0;max-width:560px}
 .tree-fig svg{width:100%;height:auto;display:block}
 .tree path{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.5s ease-out forwards}
 .tip{opacity:0;animation:fade .6s ease-out 1.6s forwards}
-.tip text{font-family:var(--display);font-weight:500;font-size:15px;fill:var(--ink)}
+.tip text{font-family:var(--display);font-weight:500;font-size:21px;fill:var(--ink)}
 .tip.other text{fill:var(--muted)}
 .tip a{cursor:pointer}
 .tip a:hover text{text-decoration:underline}
@@ -83,7 +95,7 @@ figcaption{margin-top:.75rem;font-size:.92rem;color:var(--muted);display:flex;fl
 
 /* sections */
 section.block{border-top:1px solid var(--line);padding:3.5rem 0}
-section.block .wrap{display:grid;grid-template-columns:200px minmax(0,1fr);gap:1rem 3rem}
+section.block h2{margin-bottom:1.5rem}
 h2{font-family:var(--display);font-weight:700;font-size:1.5rem;line-height:1.2;margin:0;letter-spacing:-.01em}
 h3{font-family:var(--display);font-weight:700;font-size:1.1rem;margin:2rem 0 .75rem}
 h3:first-child{margin-top:0}
@@ -125,16 +137,33 @@ dl.rows dd p{margin:.2rem 0 0}
 
 footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);font-size:.95rem}
 
-@media (max-width:860px){
-  .hero .wrap{grid-template-columns:1fr;gap:2.5rem}
-  section.block .wrap{grid-template-columns:1fr}
-  nav a{margin-left:1.1rem}
+@media (min-width:1180px){
+  .hero .wrap{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:3rem}
+}
+@media (max-width:959px){
+  html{scroll-padding-top:3.75rem}
+  .page{display:block;padding:0 1.25rem}
+  .toc{position:sticky;top:0;z-index:20;margin:0 -1.25rem;padding:0 1.25rem;background:var(--bg);border-bottom:1px solid var(--line)}
+  @supports (backdrop-filter:blur(8px)){
+    .toc{background:color-mix(in srgb,var(--bg) 90%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  }
+  .toc-name{display:none}
+  .toc ol{display:flex;gap:.25rem;overflow-x:auto;border-left:0;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 2rem),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 2rem),transparent)}
+  .toc ol::-webkit-scrollbar{display:none}
+  .toc ol::after{display:none}
+  .toc li{flex:none}
+  .toc a{padding:.9rem .75rem;white-space:nowrap}
+  .toc a::before{display:none}
+  .toc a[aria-current]{box-shadow:inset 0 -3px 0 var(--gold)}
+  .hero{padding:2rem 0 3rem}
+  section.block{padding:2.75rem 0}
 }
 @media (max-width:520px){
   dl.rows div{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
+  .toc ol::after,.toc a,.toc a::before{transition:none}
   .tree path{animation:none;stroke-dasharray:none;stroke-dashoffset:0}
   .tip{animation:none;opacity:1}
 }
@@ -143,18 +172,20 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="top">
-  <div class="wrap">
-    <a class="mark" href="#top">Daniel McKnight</a>
-    <nav aria-label="Main">
-      <a href="#current">Current research</a>
-      <a href="#research">PhD research</a>
-      <a href="#publications">Publications</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
+<div class="page">
+<nav class="toc" aria-label="Page sections">
+  <a class="toc-name" href="#top">Daniel McKnight</a>
+  <ol>
+    <li><a href="#top" data-s="top" data-label="Intro">Intro</a></li>
+    <li><a href="#current" data-s="current" data-label="Current research">Current research</a></li>
+    <li><a href="#research" data-s="research" data-label="PhD research">PhD research</a></li>
+    <li><a href="#publications" data-s="publications" data-label="Publications">Publications</a></li>
+    <li><a href="#experience" data-s="experience" data-label="Experience">Experience</a></li>
+    <li><a href="#skills" data-s="skills" data-label="Skills">Skills</a></li>
+    <li><a href="#community" data-s="community" data-label="Community">Community</a></li>
+    <li><a href="#contact" data-s="contact" data-label="Contact">Contact</a></li>
+  </ol>
+</nav>
 
 <main id="main">
 <section class="hero" id="top">
@@ -163,9 +194,9 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
       <h1>Daniel McKnight</h1>
       <div class="id">
         <img src="photo.jpg" width="104" height="104" alt="Daniel McKnight, smiling, wearing glasses">
-        <p class="role">Bioinformatician in plant pathogen genomics and biosecurity</p>
+        <p class="role">Bioinformatician specialising in pipeline development, biosecurity and genomics</p>
       </div>
-      <p class="lede">I use genomics and phylogenetics to work out which bacteria are threatening Australian crops. My PhD, with the University of Technology Sydney and NSW DPIRD, described four new <i>Xanthomonas</i> species and made the first Australian record of <i>Xanthomonas cannabis</i>.</p>
+      <p class="lede">I use my coding and bioinformatics experience to build software that strengthens Australia’s biosecurity preparedness. My PhD described the discovery and naming of five bacterial species and assessed the threat they could pose to Australian agriculture.</p>
       <div class="actions">
         <a class="btn primary" href="cv.pdf">Download CV (PDF)</a>
         <a class="btn mail" href="#contact" data-u="daniel.mcknight" data-d="dpird.nsw.gov.au">Email me</a>
@@ -207,16 +238,16 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
   <div class="wrap">
     <h2>Current research</h2>
     <div class="content">
-      <p>At NSW DPIRD I’m building, from scratch, software that designs and checks DNA-based diagnostic tests for plant pathogens. Fast, reliable tests are a first line of defence in biosecurity, but designing a good one by hand is slow and easy to get wrong. This pipeline automates the whole job, from raw sequences to a ranked shortlist of tests.</p>
+      <p>At NSW DPIRD I’m building a software pipeline that automates the design and checking of molecular diagnostic tests for pathogens. It handles everything from acquiring sequence data and finding diagnostically relevant regions to designing assays (PCR, qPCR, LAMP, RPA and CRISPR) and performing comprehensive quality control.</p>
       <ol class="steps">
-        <li><div><b>Collect.</b> Downloads and prepares the genome sequences for any organism you choose.</div></li>
+        <li><div><b>Collect.</b> Downloads and prepares genome sequences for any organism of interest.</div></li>
         <li><div><b>Find targets.</b> Locates the DNA regions that tell the target apart from its close relatives.</div></li>
-        <li><div><b>Design.</b> Generates every feasible test in those regions, aiming to catch as many known variants of the pathogen as possible. It covers PCR, qPCR, LAMP and CRISPR-based tests, plus multiplex tests that look for several targets at once and degenerate primers that tolerate natural variation in the DNA.</div></li>
-        <li><div><b>Check quality.</b> Screens every design for the things that make tests fail in the lab: primers that fold back on themselves or stick to each other, runs of repeated bases, and poorly matched melting temperatures.</div></li>
-        <li><div><b>Report.</b> Returns the best candidates, with statistics on how many variants of the species each one detects.</div></li>
+        <li><div><b>Design.</b> Generates every feasible assay within those regions, maximising coverage of known variants of the pathogen. It supports PCR, qPCR, LAMP, RPA and CRISPR-based assays, as well as multiplex designs and degenerate primers that accommodate natural sequence variation.</div></li>
+        <li><div><b>Quality control.</b> Screens each design for problems that cause assays to fail, including primers that bind themselves or each other (dimers and hairpins), runs of repeated bases, and poorly matched melting temperatures.</div></li>
+        <li><div><b>Report.</b> Ranks the best candidates and reports how many known variants of the species each one detects.</div></li>
       </ol>
-      <p style="margin-top:1.5rem">Already have primers? A second mode takes them as input, reports how well they perform and how many variants they capture, and suggests better primers aimed at the same region.</p>
-      <p>A graphical interface lets non-specialists run it without any bioinformatics, while adjustable thresholds and settings give experienced users full control.</p>
+      <p style="margin-top:1.5rem">A second mode evaluates primers you have already designed. It reports how well they perform and how many variants they capture, and can suggest improved primers that target the same region.</p>
+      <p>A graphical interface makes the software accessible to non-specialists, while adjustable thresholds and settings give experienced users full control.</p>
       <dl class="rows" style="margin-top:1.5rem">
         <div><dt>Status</dt><dd>In development</dd></div>
         <div><dt>Built by</dt><dd>NSW DPIRD, in collaboration with Deakin University</dd></div>
@@ -231,14 +262,14 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
   <div class="wrap">
     <h2>PhD research</h2>
     <div class="content">
-      <p><i>Xanthomonas</i> is a genus of bacteria that cause disease in plants, infecting several hundred crop species including rice, citrus and brassicas such as broccoli. Its name comes from the yellow pigment in its colonies. Many Australian isolates sat in culture collections for decades without a species name. In my PhD I sequenced and compared their genomes, tested whether they cause disease, and placed them on the tree.</p>
-      <p>The work covered bacterial genome assembly, phylogenetics, pangenomics, and the identification of virulence factors and genomic islands, backed up by plant infection assays.</p>
+      <p><i>Xanthomonas</i> is a genus of bacteria that cause disease in plants, infecting several hundred crop species including rice, citrus and brassicas such as broccoli. Many Australian isolates sat in culture collections for decades without a species name. In my PhD I sequenced and compared their genomes, tested whether they cause disease, and carried out a range of genomic analyses.</p>
+      <p>The work covered bacterial genome assembly, phylogenetics, pangenomics, genomic relatedness indices, and the identification of virulence factors and genomic islands, backed up by plant infection assays.</p>
       <ul class="species">
         <li><span class="dot gold"></span><div><strong><i>Xanthomonas rydalmerensis</i></strong><span class="sub">Isolated from strawberry at Rydalmere in 1976. Carries few virulence-associated factors and did not cause disease in a pathogenicity assay.</span></div></li>
         <li><span class="dot gold"></span><div><strong><i>Xanthomonas bundabergensis</i></strong><span class="sub">Isolated from strawberry at Bundaberg in 2010.</span></div></li>
         <li><span class="dot gold"></span><div><strong><i>Xanthomonas medicagonis</i></strong><span class="sub">Isolated from lucerne (<i>Medicago sativa</i>) at Tatham in 1981.</span></div></li>
         <li><span class="dot gold"></span><div><strong><i>Xanthomonas tesorieronis</i></strong><span class="sub">Isolated from strawberry at Rockley in 1976. Named for plant pathologist Leonard Tesoriero.</span></div></li>
-        <li><span class="dot teal"></span><div><strong><i>Xanthomonas cannabis</i> in Australia</strong><span class="sub">Five historical isolates from zinnia and zucchini. Two lines of evidence, genomes and plant assays, show an emerging pathogen with genomic islands linked to virulence and drug resistance.</span></div></li>
+        <li><span class="dot teal"></span><div><strong><i>Xanthomonas cannabis</i></strong><span class="sub">We identified and formally named the species, demonstrated that they infect six plant species, and analysed their genomes to evaluate Australian biosecurity risks.</span></div></li>
       </ul>
     </div>
   </div>
@@ -270,7 +301,6 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
           <p class="blurb">Compares the genomes of the bacteria behind mango and cashew bacterial black spot to find the genes that help them infect plants.</p>
         </li>
       </ol>
-      <p style="margin-top:1.5rem">Full list and citation counts on <a href="https://scholar.google.com/citations?user=lDmCGIsAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a> and <a href="https://orcid.org/0009-0001-5928-9553">ORCID</a>.</p>
     </div>
   </div>
 </section>
@@ -348,6 +378,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
   </div>
 </section>
 </main>
+</div>
 
 <footer>
   <div class="wrap">© 2026 Daniel McKnight. Views on this site are my own.</div>
@@ -360,6 +391,44 @@ document.querySelectorAll('.mail').forEach(function (el) {
   el.href = 'mailto:' + addr;
   if (el.dataset.show) el.textContent = addr;
 });
+
+// Section index: highlight the section being read and grow the branch to it.
+(function () {
+  var nav = document.querySelector('.toc');
+  if (!nav) return;
+  var ol = nav.querySelector('ol');
+  var mq = window.matchMedia('(max-width:959px)');
+  var items = [].slice.call(nav.querySelectorAll('a[data-s]')).map(function (a) {
+    return { a: a, li: a.parentNode, el: document.getElementById(a.getAttribute('data-s')) };
+  }).filter(function (x) { return x.el; });
+  var cur = -1, queued = false;
+
+  function setActive(i) {
+    if (i === cur) return;
+    cur = i;
+    items.forEach(function (x, j) {
+      if (j === i) x.a.setAttribute('aria-current', 'location');
+      else x.a.removeAttribute('aria-current');
+      x.li.classList.toggle('done', j < i);
+    });
+    var it = items[i];
+    ol.style.setProperty('--p', (it.li.offsetTop + it.li.offsetHeight / 2) + 'px');
+    if (mq.matches) {
+      ol.scrollTo({ left: it.li.offsetLeft - (ol.clientWidth - it.li.offsetWidth) / 2, behavior: 'smooth' });
+    }
+  }
+  function update() {
+    queued = false;
+    var line = window.innerHeight * 0.3, idx = 0;
+    items.forEach(function (x, j) { if (x.el.getBoundingClientRect().top <= line) idx = j; });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) idx = items.length - 1;
+    setActive(idx);
+  }
+  function queue() { if (!queued) { queued = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', queue, { passive: true });
+  window.addEventListener('resize', function () { cur = -1; queue(); });
+  update();
+})();
 </script>
 </body>
 </html>
