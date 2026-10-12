@@ -39,60 +39,83 @@ i{font-style:italic}
 main .wrap{max-width:none;padding:0}
 footer .wrap{max-width:96rem;padding:0 clamp(1.25rem,4vw,3rem)}
 
-/* section index: a growing branch on desktop, a chip bar on mobile */
-.toc{grid-column:1;grid-row:1;position:sticky;top:2rem;align-self:start;margin-top:3.25rem}
-.toc-name{display:block;font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none;margin-bottom:1.5rem}
+/* section index: a growing branch on desktop, a chip bar on mobile
 
-/* Both lines run through the exact centre of each navigation dot */
-.toc ol{
-  list-style:none;
-  margin:0;
-  padding:0;
-  position:relative;
-  border-left:0;
-  /* Shift the list container right so the line sits perfectly centered inside the 0.8rem width circle */
-  margin-left:.4rem;
+   How the alignment works:
+   The rail and the dot are no longer positioned separately. Every list row
+   owns BOTH its dot and its own slice of the rail, and both are placed from
+   the same two variables below. The dot fills a column that is exactly
+   --dot wide, and the rail is inset by (--dot - --rail) / 2, so the rail's
+   centre is the dot's centre whatever the values are. Nothing depends on
+   rem, font size, scroll position or measured heights. Keep (--dot - --rail)
+   even and the offset is a whole pixel, so the edges never blur. */
+.toc{
+  --dot:14px;
+  --rail:2px;
+  grid-column:1;grid-row:1;position:sticky;top:2rem;align-self:start;margin-top:3.25rem;
 }
-.toc ol::before{
+.toc-name{display:block;font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none;margin-bottom:1.5rem}
+.toc ol{list-style:none;margin:0;padding:0}
+
+/* one row = one slice of rail (grey, with a gold fill laid over it) */
+.toc li{position:relative;--cur:.5}
+.toc li::before,
+.toc li::after{
   content:"";
   position:absolute;
-  left:0;
-  top:0;
-  bottom:0;
-  width:2px;
-  background:var(--line);
+  top:0;bottom:0;
+  left:calc((var(--dot) - var(--rail)) / 2);
+  width:var(--rail);
+  pointer-events:none;
 }
-.toc ol::after{
-  content:"";
-  position:absolute;
-  left:0;
-  top:0;
-  width:2px;
-  height:var(--p,0px);
-  background:var(--gold);
-  transition:height .4s ease;
+.toc li::before{background:var(--line)}
+.toc li::after{background:var(--gold);transform:scaleY(0);transform-origin:top;transition:transform .4s ease}
+
+/* the rail starts at the first dot's centre and stops at the last dot's centre */
+.toc li:first-child{--cur:0}
+.toc li:first-child::before,
+.toc li:first-child::after{top:50%}
+.toc li:last-child{--cur:1}
+.toc li:last-child::before,
+.toc li:last-child::after{bottom:50%}
+
+/* gold fills rows already passed, and runs to the dot centre in the current row */
+.toc li.done::after{transform:scaleY(1)}
+.toc li.cur::after{transform:scaleY(var(--cur))}
+
+/* the link is a two-column grid: [dot][label] */
+.toc ol a{
+  display:grid;
+  grid-template-columns:var(--dot) auto;
+  column-gap:.65rem;
+  align-items:center;
+  padding:.4rem 0;
+  font-family:var(--display);font-weight:500;font-size:.98rem;
+  color:var(--muted);text-decoration:none;
+  transition:color .2s;
 }
-.toc li{position:relative}
-.toc a{display:block;position:relative;padding:.4rem 0 .4rem 1.25rem;font-family:var(--display);font-weight:500;font-size:.98rem;color:var(--muted);text-decoration:none;transition:color .2s}
-.toc a::after{content:attr(data-label);display:block;height:0;overflow:hidden;visibility:hidden;font-weight:700}
-.toc a::before{
+/* reserves the bold width so the label never reflows when it becomes current */
+.toc ol a::after{
+  content:attr(data-label);
+  grid-column:2;grid-row:2;
+  height:0;overflow:hidden;visibility:hidden;font-weight:700;
+}
+/* the dot sits above the rail and hides it where they cross */
+.toc ol a::before{
   content:"";
-  position:absolute;
-  box-sizing:border-box;     /* border now sits inside the size */
-  width:.8rem;
-  height:.8rem;
-  left:-.4rem;               /* Align circle center directly over the 2px vertical line at left:0 */
-  top:50%;
-  margin-top:-.4rem;         /* half the height, so it's centred vertically */
+  grid-column:1;grid-row:1;
+  position:relative;z-index:1;
+  box-sizing:border-box;
+  width:var(--dot);height:var(--dot);
   border-radius:50%;
   background:var(--bg);
   border:2px solid var(--line);
   transition:background .25s,border-color .25s,transform .25s;
 }
-.toc a:hover{color:var(--ink);text-decoration:none}
+.toc ol a:hover{color:var(--ink);text-decoration:none}
 .toc li.done a::before{border-color:var(--gold)}
-.toc a[aria-current]{color:var(--ink);font-weight:700}
-.toc a[aria-current]::before{background:var(--gold);border-color:var(--gold);transform:scale(1.3)}
+.toc ol a[aria-current]{color:var(--ink);font-weight:700}
+.toc ol a[aria-current]::before{background:var(--gold);border-color:var(--gold);transform:scale(1.3)}
 
 /* hero */
 .hero{padding:3rem 0 4rem}
@@ -190,14 +213,14 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
     .toc{background:color-mix(in srgb,var(--bg) 90%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
   }
   .toc-name{display:none}
-  .toc ol{display:flex;gap:.25rem;overflow-x:auto;border-left:0;margin-left:0;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 2rem),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 2rem),transparent)}
+  .toc ol{display:flex;gap:.25rem;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 2rem),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 2rem),transparent)}
   .toc ol::-webkit-scrollbar{display:none}
-  .toc ol::before{display:none}
-  .toc ol::after{display:none}
   .toc li{flex:none}
-  .toc a{padding:.9rem .75rem;white-space:nowrap}
-  .toc a::before{display:none}
-  .toc a[aria-current]{box-shadow:inset 0 -3px 0 var(--gold)}
+  .toc li::before,.toc li::after{display:none}
+  .toc ol a{display:block;padding:.9rem .75rem;white-space:nowrap}
+  .toc ol a::before{display:none}
+  .toc ol a::after{display:block}
+  .toc ol a[aria-current]{box-shadow:inset 0 -3px 0 var(--gold)}
   .hero{padding:2rem 0 3rem}
   section.block{padding:2.75rem 0}
 }
@@ -206,7 +229,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .toc ol::after,.toc a,.toc a::before{transition:none}
+  .toc li::after,.toc ol a,.toc ol a::before{transition:none}
   .tree path{animation:none;stroke-dasharray:none;stroke-dashoffset:0}
   .tip{animation:none;opacity:1}
 }
@@ -435,7 +458,8 @@ document.querySelectorAll('.mail').forEach(function (el) {
   if (el.dataset.show) el.textContent = addr;
 });
 
-// Section index: highlight the section being read and grow the branch to it.
+// Section index: mark the section being read. The rail and dots are drawn
+// entirely in CSS from these classes, so no pixel measurements are needed here.
 (function () {
   var nav = document.querySelector('.toc');
   if (!nav) return;
@@ -453,10 +477,10 @@ document.querySelectorAll('.mail').forEach(function (el) {
       if (j === i) x.a.setAttribute('aria-current', 'location');
       else x.a.removeAttribute('aria-current');
       x.li.classList.toggle('done', j < i);
+      x.li.classList.toggle('cur', j === i);
     });
-    var it = items[i];
-    ol.style.setProperty('--p', (it.li.offsetTop + it.li.offsetHeight / 2) + 'px');
     if (mq.matches) {
+      var it = items[i];
       ol.scrollTo({ left: it.li.offsetLeft - (ol.clientWidth - it.li.offsetWidth) / 2, behavior: 'smooth' });
     }
   }
