@@ -42,12 +42,12 @@ footer .wrap{max-width:96rem;padding:0 clamp(1.25rem,4vw,3rem)}
 /* section index: a growing branch on desktop, a chip bar on mobile */
 .toc{grid-column:1;grid-row:1;position:sticky;top:2rem;align-self:start;margin-top:3.25rem}
 .toc-name{display:block;font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none;margin-bottom:1.5rem}
-.toc ol{list-style:none;margin:0;padding:0;position:relative;border-left:2px solid var(--line)}
+.toc ol{list-style:none;margin:0;padding:0;position:relative;border-left:2px solid var(--line);margin-left:5px}
 .toc ol::after{content:"";position:absolute;left:-2px;top:0;width:2px;height:var(--p,0px);background:var(--gold);transition:height .4s ease}
 .toc li{position:relative}
 .toc a{display:block;position:relative;padding:.4rem 0 .4rem 1.25rem;font-family:var(--display);font-weight:500;font-size:.98rem;color:var(--muted);text-decoration:none;transition:color .2s}
 .toc a::after{content:attr(data-label);display:block;height:0;overflow:hidden;visibility:hidden;font-weight:700}
-.toc a::before{content:"";position:absolute;left:-6px;top:50%;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:var(--bg);border:2px solid var(--line);transition:background .25s,border-color .25s,transform .25s}
+.toc a::before{content:"";position:absolute;left:-7px;top:50%;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:var(--bg);border:2px solid var(--line);transition:background .25s,border-color .25s,transform .25s}
 .toc a:hover{color:var(--ink);text-decoration:none}
 .toc li.done a::before{border-color:var(--gold)}
 .toc a[aria-current]{color:var(--ink);font-weight:700}
@@ -149,7 +149,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
     .toc{background:color-mix(in srgb,var(--bg) 90%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
   }
   .toc-name{display:none}
-  .toc ol{display:flex;gap:.25rem;overflow-x:auto;border-left:0;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 2rem),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 2rem),transparent)}
+  .toc ol{display:flex;gap:.25rem;overflow-x:auto;border-left:0;margin-left:0;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 2rem),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 2rem),transparent)}
   .toc ol::-webkit-scrollbar{display:none}
   .toc ol::after{display:none}
   .toc li{flex:none}
@@ -249,9 +249,9 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
       <p style="margin-top:1.5rem">The software can also assess primers that researchers have already designed, estimate which pathogen variants they are likely to detect, and suggest improved alternatives. A graphical interface is intended to make the pipeline usable by researchers without specialist bioinformatics skills, while adjustable settings allow experienced users to tailor the analysis.</p>
       <dl class="rows" style="margin-top:1.5rem">
         <div><dt>Status</dt><dd>In development</dd></div>
-        <div><dt>Built by</dt><dd>NSW DPIRD</dd></div>
+        <div><dt>Built by</dt><dd>NSW DPIRD, in collaboration with Deakin University</dd></div>
         <div><dt>Funding</dt><dd>Australian Government Department of Agriculture, Fisheries and Forestry (DAFF)</dd></div>
-        <div><dt>Validation</dt><dd>Deakin University is validating assays designed by the pipeline on three different pathogen systems</dd></div>
+        <div><dt>Validation</dt><dd>Deakin University is testing the pipeline on three different pathogen systems</dd></div>
       </dl>
     </div>
   </div>
@@ -323,8 +323,8 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
     <div class="content">
       <h3>Employment</h3>
       <dl class="rows">
-        <div><dt>2025 to Present</dt><dd><b>Bioinformatician</b><span>NSW DPIRD · Hybrid</span><p>I'm developing an automated pipeline to rapidly design and validate molecular diagnostic assays (PCR/qPCR, LAMP, RPA, and CRISPR gRNA) that will be usable without specialist bioinformatics knowledge. It retrieves sequences from NCBI for your species of interest, identifies diagnostically relevant regions, designs and optimises assays within that region, and runs comprehensive QC to filter out poor candidates.</p></dd></div>
-        <div><dt>2025</dt><dd><b>Bioinformatician</b><span>NSW DPIRD · Menangle, New South Wales, Australia · Part-time · On-site</span><p>Throughout 2025 I worked for Dr Toni Chapman's lab developing bioinformatics pipelines, performing NGS sequencing and genome assembly, running plant pathology trials, and designing molecular diagnostic assays in support of plant pathology research.</p></dd></div>
+        <div><dt>2025 to Present</dt><dd><b>Bioinformatician</b><span>New South Wales Department of Primary Industries and Regional Development (DPIRD) · Hybrid</span><p>I'm developing an automated pipeline to rapidly design and validate molecular diagnostic assays (PCR/qPCR, LAMP, RPA, and CRISPR gRNA) that will be usable without specialist bioinformatics knowledge. It retrieves sequences from NCBI for your species of interest, identifies diagnostically relevant regions, designs and optimises assays within that region, and runs comprehensive QC to filter out poor candidates.</p></dd></div>
+        <div><dt>2025</dt><dd><b>Bioinformatician</b><span>New South Wales Department of Primary Industries and Regional Development (DPIRD) · Menangle, New South Wales, Australia · Part-time · On-site</span><p>Throughout 2025 I worked for Dr Toni Chapman's lab developing bioinformatics pipelines, performing NGS sequencing and genome assembly, running plant pathology trials, and designing molecular diagnostic assays in support of plant pathology research.</p></dd></div>
         <div><dt>2021 to 2025</dt><dd><b>Technical Assistant</b><span>Biotechnology laboratory, NSW DPIRD · Part-time · On-site</span><p>Worked in high-throughput, NATA-accredited laboratories, performing genetic disease detection, eDNA-based exotic species detection, and specimen preparation.</p></dd></div>
         <div><dt>2020 to 2021</dt><dd><b>Electrical contractor</b><span>Devika</span><p>I designed and constructed the electrical circuitry for a medical product prototype. The prototype was successfully validated by the client and subsequently moved into mass production.</p></dd></div>
         <div><dt>2020</dt><dd><b>Summer casual researcher</b><span>Yu Research Group</span><p>Began computational biophysics research in the Dr Haibo Yu research lab. I learnt Python, Bash, and a range of specialist programs to utilise the Gadi supercomputer and analyse scientific data.</p></dd></div>
