@@ -179,10 +179,10 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
   <ol>
     <li><a href="#top" data-s="top" data-label="Intro">Intro</a></li>
     <li><a href="#current" data-s="current" data-label="Current research">Current research</a></li>
-    <li><a href="#research" data-s="research" data-label="PhD research">PhD research</a></li>
     <li><a href="#publications" data-s="publications" data-label="Publications">Publications</a></li>
-    <li><a href="#experience" data-s="experience" data-label="Experience">Experience</a></li>
+    <li><a href="#research" data-s="research" data-label="PhD research">PhD research</a></li>
     <li><a href="#skills" data-s="skills" data-label="Skills">Skills</a></li>
+    <li><a href="#experience" data-s="experience" data-label="Experience">Experience</a></li>
     <li><a href="#community" data-s="community" data-label="Community">Community</a></li>
     <li><a href="#contact" data-s="contact" data-label="Contact">Contact</a></li>
   </ol>
@@ -197,7 +197,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
         <img src="photo.jpg" width="104" height="104" alt="Daniel McKnight, smiling, wearing glasses">
         <p class="role">Bioinformatician specialising in pipeline development, biosecurity and genomics</p>
       </div>
-      <p class="lede">I use my coding and bioinformatics experience to build software that strengthens Australia’s biosecurity preparedness. My PhD described the discovery and naming of five bacterial species and assessed the threat they could pose to Australian agriculture.</p>
+      <p class="lede">I’m a bioinformatician at NSW DPIRD developing automated molecular diagnostic pipelines for Australian plant biosecurity. My work combines genome-scale sequence analysis, assay design and software engineering to make reliable diagnostic tools more accessible to researchers. My PhD research described four novel <i>Xanthomonas</i> species and established the first Australian record of <i>X. cannabis</i>.</p>
       <div class="actions">
         <a class="btn primary" href="cv.pdf">Download CV (PDF)</a>
         <a class="btn mail" href="#contact" data-u="daniel.mcknight" data-d="dpird.nsw.gov.au">Email me</a>
@@ -238,39 +238,21 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
   <div class="wrap">
     <h2>Current research</h2>
     <div class="content">
-      <p>At NSW DPIRD I’m building a software pipeline that automates the design and checking of molecular diagnostic tests for pathogens. It handles everything from acquiring sequence data to finding diagnostically relevant regions to designing assays (PCR, qPCR, LAMP, RPA and CRISPR) and performing comprehensive quality control.</p>
+      <p>At NSW DPIRD, I’m developing software to help researchers design and assess DNA-based tests for plant pathogens. The pipeline brings together genome sequence data, diagnostic test design and quality checks, reducing the amount of manual analysis needed to identify reliable tests.</p>
       <ol class="steps">
-        <li><div><b>Collect.</b> Downloads and prepares genome sequences for any organism of interest.</div></li>
-        <li><div><b>Find targets.</b> Locates the DNA regions that tell the target apart from plant hosts and closely related species.</div></li>
-        <li><div><b>Design.</b> Generates every feasible assay within those regions, maximising coverage of known variants of the pathogen. It supports PCR, qPCR, LAMP, RPA and CRISPR-based assays, as well as multiplex designs and degenerate primers that accommodate natural sequence variation.</div></li>
-        <li><div><b>Quality control.</b> Screens each design for problems that cause assays to fail, including primers that bind themselves or each other (dimers and hairpins), runs of repeated bases, and poorly matched melting temperatures.</div></li>
-        <li><div><b>Report.</b> Ranks the best candidates and reports how many known variants of the species each one detects.</div></li>
+        <li><div><b>Collect.</b> Automates the download and preparation of all public DNA sequences for any organism of interest and its off-targets.</div></li>
+        <li><div><b>Find suitable DNA targets.</b> Compares pathogen genomes with plant hosts and closely related organisms to identify DNA regions that can help distinguish the pathogen from other species.</div></li>
+        <li><div><b>Design diagnostic tests.</b> Generates every feasible assay within those regions, maximising coverage of known variants of the pathogen. It supports PCR, qPCR, LAMP, RPA and CRISPR-based assays, as well as multiplex assays and degenerate primers that accommodate natural sequence variation.</div></li>
+        <li><div><b>Quality control and coverage.</b> Filters candidates through quality control for dimers, hairpins, homopolymers, GC%, and Tm, then calculates variant coverage for surviving primers.</div></li>
+        <li><div><b>Compare and report candidates.</b> Ranks the strongest designs and reports which proportion of the known pathogen variants each is expected to detect, helping researchers decide which tests to investigate further.</div></li>
       </ol>
-      <p style="margin-top:1.5rem">A second mode evaluates primers you have already designed. It reports how well they perform and how many variants they capture, and can suggest improved primers that target the same region.</p>
-      <p>A graphical interface makes the software accessible to non-specialists, while adjustable thresholds and settings give experienced users full control.</p>
+      <p style="margin-top:1.5rem">The software can also assess primers that researchers have already designed, estimate which pathogen variants they are likely to detect, and suggest improved alternatives. A graphical interface is intended to make the pipeline usable by researchers without specialist bioinformatics skills, while adjustable settings allow experienced users to tailor the analysis.</p>
       <dl class="rows" style="margin-top:1.5rem">
         <div><dt>Status</dt><dd>In development</dd></div>
         <div><dt>Built by</dt><dd>NSW DPIRD, in collaboration with Deakin University</dd></div>
         <div><dt>Funding</dt><dd>Australian Government Department of Agriculture, Fisheries and Forestry (DAFF)</dd></div>
         <div><dt>Validation</dt><dd>Deakin University is testing the pipeline on three different pathogen systems</dd></div>
       </dl>
-    </div>
-  </div>
-</section>
-
-<section class="block" id="research">
-  <div class="wrap">
-    <h2>PhD research</h2>
-    <div class="content">
-      <p><i>Xanthomonas</i> is a genus of bacteria that cause disease in plants, infecting several hundred crop species including rice, citrus and brassicas such as broccoli. Many Australian isolates sat in culture collections for decades without a species name. In my PhD I sequenced and compared their genomes, tested whether they cause disease, and carried out a range of genomic analyses.</p>
-      <p>The work covered bacterial genome assembly, phylogenetics, pangenomics, genomic relatedness indices, and the identification of virulence factors and genomic islands, backed up by plant infection assays.</p>
-      <ul class="species">
-        <li><span class="dot gold"></span><div><strong><i>Xanthomonas rydalmerensis</i></strong><span class="sub">Isolated from strawberry at Rydalmere in 1976.</span></div></li>
-        <li><span class="dot gold"></span><div><strong><i>Xanthomonas bundabergensis</i></strong><span class="sub">Isolated from strawberry at Bundaberg in 2010.</span></div></li>
-        <li><span class="dot gold"></span><div><strong><i>Xanthomonas medicagonis</i></strong><span class="sub">Isolated from lucerne (<i>Medicago sativa</i>) at Tatham in 1981.</span></div></li>
-        <li><span class="dot gold"></span><div><strong><i>Xanthomonas tesorieronis</i></strong><span class="sub">Isolated from strawberry at Rockley in 1976. Named for plant pathologist Leonard Tesoriero.</span></div></li>
-        <li><span class="dot teal"></span><div><strong><i>Xanthomonas cannabis</i></strong><span class="sub">First reported as a hemp pathogen in 1947, we formally established <i>Xanthomonas cannabis</i> as a valid species and made the first report of its presence in Australia.</span></div></li>
-      </ul>
     </div>
   </div>
 </section>
@@ -305,6 +287,36 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
   </div>
 </section>
 
+<section class="block" id="research">
+  <div class="wrap">
+    <h2>PhD research</h2>
+    <div class="content">
+      <p>Historical Australian <i>Xanthomonas</i> isolates had remained in culture collections for decades without reliable species-level identification. In my PhD, I revisited this material using genome sequencing, comparative genomics, phylogenetics and plant infection assays to clarify bacterial diversity and assess potential agricultural significance.</p>
+      <p>The work combined genome assembly, pangenomics, genomic relatedness indices, and the identification of virulence factors and genomic islands. It resulted in the description of four novel species and established the first Australian record of <i>X. cannabis</i>.</p>
+      <ul class="species">
+        <li><span class="dot gold"></span><div><strong><i>Xanthomonas rydalmerensis</i></strong><span class="sub">Isolated from strawberry at Rydalmere in 1976.</span></div></li>
+        <li><span class="dot gold"></span><div><strong><i>Xanthomonas bundabergensis</i></strong><span class="sub">Isolated from strawberry at Bundaberg in 2010.</span></div></li>
+        <li><span class="dot gold"></span><div><strong><i>Xanthomonas medicagonis</i></strong><span class="sub">Isolated from lucerne (<i>Medicago sativa</i>) at Tatham in 1981.</span></div></li>
+        <li><span class="dot gold"></span><div><strong><i>Xanthomonas tesorieronis</i></strong><span class="sub">Isolated from strawberry at Rockley in 1976. Named for plant pathologist Leonard Tesoriero.</span></div></li>
+        <li><span class="dot teal"></span><div><strong><i>Xanthomonas cannabis</i></strong><span class="sub">First reported as a hemp pathogen in 1947, we formally established <i>Xanthomonas cannabis</i> as a valid species and made the first report of its presence in Australia.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <div class="content skills">
+      <p><b>Genomics and phylogenetics.</b> Bacterial genome assembly, phylogenetics, genomic and pangenomic analysis, virulence factor and genomic island identification.</p>
+      <p><b>Programming and pipelines.</b> Python, R and GNU Bash from five years of bioinformatics and computational biophysics research. I build automated pipelines with QC checkpoints, error handling and reproducibility.</p>
+      <p><b>Molecular diagnostics.</b> Developing and validating qPCR primers, including an assay for pre-symptomatic detection of <i>Xanthomonas campestris</i> in broccoli.</p>
+      <p><b>Data analysis.</b> Data manipulation and visualisation for published papers and my thesis.</p>
+      <p><b>Collaboration.</b> Coordinated research across 12 co-authors from four institutes. I taught myself computational biophysics and bioinformatics coming from a biological science background.</p>
+    </div>
+  </div>
+</section>
+
 <section class="block" id="experience">
   <div class="wrap">
     <h2>Experience and education</h2>
@@ -328,23 +340,9 @@ footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);f
 
       <h3>Awards and certificates</h3>
       <dl class="rows">
-        <div><dt>2024</dt><dd><b>Store and handle dangerous goods and hazardous substances (TLID0021)</b></dd></div>
         <div><dt>2023</dt><dd><b>Vice-Chancellor’s Conference Fund</b><span>University of Technology Sydney</span></dd></div>
         <div><dt>2021</dt><dd><b>Australian Research Council (ARC) Linkage scholarship and stipend</b></dd></div>
       </dl>
-    </div>
-  </div>
-</section>
-
-<section class="block" id="skills">
-  <div class="wrap">
-    <h2>Skills</h2>
-    <div class="content skills">
-      <p><b>Genomics and phylogenetics.</b> Bacterial genome assembly, phylogenetics, genomic and pangenomic analysis, virulence factor and genomic island identification.</p>
-      <p><b>Programming and pipelines.</b> Python, R and GNU Bash from five years of bioinformatics and computational biophysics research. I build automated pipelines with QC checkpoints, error handling and reproducibility.</p>
-      <p><b>Molecular diagnostics.</b> Developing and validating qPCR primers, including an assay for pre-symptomatic detection of <i>Xanthomonas campestris</i> in broccoli.</p>
-      <p><b>Data analysis.</b> Data manipulation and visualisation for published papers and my thesis.</p>
-      <p><b>Collaboration.</b> Coordinated research across 12 co-authors from four institutes. I taught myself computational biophysics and bioinformatics coming from a biological science background.</p>
     </div>
   </div>
 </section>
