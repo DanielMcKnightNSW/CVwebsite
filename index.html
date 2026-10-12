@@ -69,7 +69,9 @@ footer .wrap{max-width:96rem;padding:0 clamp(1.25rem,4vw,3rem)}
   pointer-events:none;
 }
 .toc li::before{background:var(--line)}
-.toc li::after{background:var(--gold);transform:scaleY(0);transform-origin:top;transition:transform .4s ease}
+/* --dur and --delay are set by the script so that the rows fill one after
+   another at a constant speed, like a single continuous line */
+.toc li::after{background:var(--gold);transform:scaleY(0);transform-origin:top;transition:transform var(--dur,.4s) linear var(--delay,0s)}
 
 /* the rail starts at the first dot's centre and stops at the last dot's centre */
 .toc li:first-child{--cur:0}
@@ -110,7 +112,7 @@ footer .wrap{max-width:96rem;padding:0 clamp(1.25rem,4vw,3rem)}
   border-radius:50%;
   background:var(--bg);
   border:2px solid var(--line);
-  transition:background .25s,border-color .25s,transform .25s;
+  transition:background .25s var(--ddelay,0s),border-color .25s var(--ddelay,0s),transform .25s var(--ddelay,0s);
 }
 .toc ol a:hover{color:var(--ink);text-decoration:none}
 .toc li.done a::before{border-color:var(--gold)}
@@ -468,10 +470,25 @@ document.querySelectorAll('.mail').forEach(function (el) {
   var items = [].slice.call(nav.querySelectorAll('a[data-s]')).map(function (a) {
     return { a: a, li: a.parentNode, el: document.getElementById(a.getAttribute('data-s')) };
   }).filter(function (x) { return x.el; });
-  var cur = -1, queued = false;
+  var cur = -1, queued = false, last = items.length - 1;
+
+  // Each row owns a slice of the rail with its own gold fill (scale 0 to 1).
+  // To make the slices behave like one continuous line, the script times
+  // them in sequence: the row the line is leaving finishes before the next
+  // row starts, and the speed is the same in every row.
+  function centre(j) { return j === 0 ? 0 : j === last ? 1 : 0.5; }     // fill level at the dot centre
+  function span(j) { return (j === 0 || j === last) ? 0.5 : 1; }        // slice length in row heights
+  function goal(j, i) { return j < i ? 1 : j === i ? centre(j) : 0; }   // resting fill when row i is current
+  function shown(j) {                                                   // fill as drawn right now, even mid-animation
+    var m = /matrix\(([^)]+)\)/.exec(getComputedStyle(items[j].li, '::after').transform);
+    return m ? parseFloat(m[1].split(',')[3]) : goal(j, cur);
+  }
 
   function setActive(i) {
     if (i === cur) return;
+    var p = cur;
+    var from = items.map(function (x, j) { return p < 0 ? goal(j, i) : shown(j); });
+
     cur = i;
     items.forEach(function (x, j) {
       if (j === i) x.a.setAttribute('aria-current', 'location');
@@ -479,6 +496,27 @@ document.querySelectorAll('.mail').forEach(function (el) {
       x.li.classList.toggle('done', j < i);
       x.li.classList.toggle('cur', j === i);
     });
+
+    // Plan the sequence: forward runs top to bottom, backward runs bottom to top.
+    var plan = items.map(function (x, j) {
+      var s1 = goal(j, i);
+      return { li: x.li, c: centre(j), s0: from[j], s1: s1, len: Math.abs(s1 - from[j]) * span(j) };
+    });
+    var dist = plan.reduce(function (n, s) { return n + s.len; }, 0);
+    var perRow = p < 0 ? 0 : Math.min(0.1, 1 / Math.max(dist, 0.01)); // seconds per row height, capped for long jumps
+    if (i < p) plan.reverse();
+
+    var t = 0;
+    plan.forEach(function (s) {
+      var d = s.len * perRow, frac = 0;
+      // when, within this row's run, does the line pass the dot centre?
+      if (s.s1 !== s.s0 && (s.s0 - s.c) * (s.s1 - s.c) <= 0) frac = (s.c - s.s0) / (s.s1 - s.s0);
+      s.li.style.setProperty('--dur', d + 's');
+      s.li.style.setProperty('--delay', t + 's');
+      s.li.style.setProperty('--ddelay', (t + frac * d) + 's');
+      t += d;
+    });
+
     if (mq.matches) {
       var it = items[i];
       ol.scrollTo({ left: it.li.offsetLeft - (ol.clientWidth - it.li.offsetWidth) / 2, behavior: 'smooth' });
